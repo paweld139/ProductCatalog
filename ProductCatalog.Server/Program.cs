@@ -1,3 +1,5 @@
+using ProductCatalog.BLL.Interfaces;
+using ProductCatalog.BLL.Services;
 using ProductCatalog.DAL;
 
 namespace ProductCatalog.Server
@@ -25,6 +27,8 @@ namespace ProductCatalog.Server
             services.AddScoped<ProductCatalogSeeder>();
 
             services.AddHttpClient();
+
+            services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 

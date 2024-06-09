@@ -22,6 +22,10 @@ namespace ProductCatalog.Server
 
             services.AddSqlServer<ProductCatalogContext>(connectionString);
 
+            services.AddScoped<ProductCatalogSeeder>();
+
+            services.AddHttpClient();
+
             var app = builder.Build();
 
             var scope = app.Services.CreateScope();

@@ -1,3 +1,4 @@
+using ProductCatalog.DAL;
 
 namespace ProductCatalog.Server
 {
@@ -7,29 +8,42 @@ namespace ProductCatalog.Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            var services = builder.Services;
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            var configuration = builder.Configuration;
+
+            services.AddControllers();
+
+            services.AddEndpointsApiExplorer();
+
+            services.AddSwaggerGen();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            services.AddSqlServer<ProductCatalogContext>(connectionString);
 
             var app = builder.Build();
 
+            var scope = app.Services.CreateScope();
+
+            var seeder = scope.ServiceProvider.GetRequiredService<ProductCatalogSeeder>();
+
+            seeder.Seed().Wait();
+
             app.UseDefaultFiles();
+
             app.UseStaticFiles();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
+
                 app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

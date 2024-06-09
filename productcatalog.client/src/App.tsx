@@ -64,6 +64,7 @@ function App() {
                     <th>Thumbnail</th>
                 </tr>
             </thead>
+
             <tbody>
                 {products.map(product =>
                     <tr key={product.id}>

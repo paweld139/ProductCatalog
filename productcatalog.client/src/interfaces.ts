@@ -56,3 +56,21 @@ export interface Product {
     imagesCollection?: Image[];
     thumbnail: string;
 }
+
+export interface GridElementImage {
+    alt: string;
+    src: string;
+}
+
+export interface GridElementButton {
+    text: string;
+    onClick: () => void;
+}
+
+export interface GridElement {
+    image: GridElementImage,
+    title: string;
+    subtitle: string;
+    text: string;
+    button: GridElementButton;
+}

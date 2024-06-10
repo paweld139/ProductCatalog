@@ -1,12 +1,14 @@
 import {
     useEffect,
     useState,
-    useCallback
+    useCallback,
+    useMemo
 } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
+    GridElement,
     Product
 } from './interfaces';
 
@@ -15,9 +17,10 @@ import {
 } from './requests';
 
 import {
-    Container,
-    Table
+    Container
 } from 'reactstrap';
+
+import AppGrid from './components/AppGrid/AppGrid';
 
 function App() {
     const [products, setProducts] = useState<Product[]>();
@@ -33,64 +36,26 @@ function App() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const contents = products === undefined
+    const elements = useMemo<GridElement[] | undefined>(() => products?.map(product => ({
+        title: product.title,
+        subtitle: product.category,
+        text: product.description,
+        image: {
+            alt: product.title,
+            src: product.thumbnail
+        },
+        button: {
+            text: 'Details',
+            onClick: () => alert(JSON.stringify(product))
+        }
+    })), [products]);
+
+    const contents = elements === undefined
         ? <p><em>Loading...</em></p>
         :
-        <Table
-            striped
-            bordered
-            hover
-            responsive
-            dark            
-        >
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Discount Percentage</th>
-                    <th>Rating</th>
-                    <th>Stock</th>
-                    <th>Brand</th>
-                    <th>SKU</th>
-                    <th>Weight</th>
-                    <th>Warranty Information</th>
-                    <th>Shipping Information</th>
-                    <th>Availability Status</th>
-                    <th>Return Policy</th>
-                    <th>Minimum Order Quantity</th>
-                    <th>Thumbnail</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {products.map(product =>
-                    <tr key={product.id}>
-                        <td>{product.id}</td>
-                        <td>{product.title}</td>
-                        <td>{product.description}</td>
-                        <td>{product.category}</td>
-                        <td>{product.price}</td>
-                        <td>{product.discountPercentage}</td>
-                        <td>{product.rating}</td>
-                        <td>{product.stock}</td>
-                        <td>{product.brand}</td>
-                        <td>{product.sku}</td>
-                        <td>{product.weight}</td>
-                        <td>{product.warrantyInformation}</td>
-                        <td>{product.shippingInformation}</td>
-                        <td>{product.shippingInformation}</td>
-                        <td>{product.returnPolicy}</td>
-                        <td>{product.minimumOrderQuantity}</td>
-                        <td>
-                            <img src={product.thumbnail} alt={product.title} />
-                        </td>
-                    </tr>
-                )}
-            </tbody>
-        </Table>;
+        <AppGrid
+            elements={elements}
+        />
 
     return (
         <Container fluid>

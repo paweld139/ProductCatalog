@@ -31,10 +31,7 @@ const ProductPrice = ({
             className="p-0"
             fluid
         >
-            <Row
-                noGutters
-                className="gap-1"
-            >
+            <Row className="g-1">
                 <Col className={clsx(isDiscounted && styles.discounted)}>
                     {product.price}$
                 </Col>

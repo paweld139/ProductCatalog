@@ -34,10 +34,7 @@ const ProductFooter = ({
                 </Col>
             </Row>
 
-            <Row
-                className="gap-1"
-                noGutters
-            >
+            <Row className="g-1">
                 {product.tagsCollection?.map((tag, i) =>
                     <Col
                         key={i}

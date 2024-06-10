@@ -27,7 +27,10 @@ const ProductPrice = ({
     const isDiscounted = useMemo(() => product.discountPercentage > 0, [product.discountPercentage]);
 
     return (
-        <Container className="p-0">
+        <Container
+            className="p-0"
+            fluid
+        >
             <Row
                 noGutters
                 className="gap-1"

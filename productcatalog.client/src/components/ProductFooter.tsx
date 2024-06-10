@@ -21,7 +21,10 @@ const ProductFooter = ({
     product
 }: Props) => {
     return (
-        <Container className="p-0">
+        <Container
+            className="p-0"
+            fluid
+        >
             <Row className="mb-2">
                 <Col>{product.stock} in stock</Col>
 

@@ -27,6 +27,7 @@ const AppGrid = ({
                 <Card
                     color="dark"
                     inverse
+                    key={element.title}
                 >
                     <img
                         alt={element.image.alt}
@@ -51,8 +52,10 @@ const AppGrid = ({
                     </CardBody>
 
                     <CardFooter
-                        className="text-end"
+                        className="d-flex justify-content-between align-items-center"
                     >
+                        {element.footer}
+
                         <Button
                             onClick={element.button.onClick}
                         >

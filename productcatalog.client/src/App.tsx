@@ -22,6 +22,8 @@ import {
 
 import AppGrid from './components/AppGrid/AppGrid';
 
+import AppRating from './components/AppRating';
+
 function App() {
     const [products, setProducts] = useState<Product[]>();
 
@@ -47,7 +49,15 @@ function App() {
         button: {
             text: 'Details',
             onClick: () => alert(JSON.stringify(product))
-        }
+        },
+        footer: (
+            <>
+                <AppRating value={product.rating} />
+
+                <span>
+                    <strong>Price:</strong>{' '}{product.price}
+                </span>
+            </>)
     })), [products]);
 
     const contents = elements === undefined

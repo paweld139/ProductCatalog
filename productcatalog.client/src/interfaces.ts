@@ -73,4 +73,5 @@ export interface GridElement {
     subtitle: string;
     text: string;
     button: GridElementButton;
+    footer?: JSX.Element;
 }

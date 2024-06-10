@@ -12,6 +12,8 @@ import {
 
 import {
     Badge,
+    Col,
+    Container,
     Row
 } from "reactstrap";
 
@@ -25,27 +27,30 @@ const ProductPrice = ({
     const isDiscounted = useMemo(() => product.discountPercentage > 0, [product.discountPercentage]);
 
     return (
-        <Row
-            xs="auto"
-            noGutters
-            className="align-items-center gap-1"
-        >
-            <div className={clsx(isDiscounted && styles.discounted)}>
-                {product.price}$
-            </div>
+        <Container className="p-0">
+            <Row
+                noGutters
+                className="gap-1"
+            >
+                <Col className={clsx(isDiscounted && styles.discounted)}>
+                    {product.price}$
+                </Col>
 
-            {isDiscounted && (
-                <>
-                    <div>
-                        {(product.price - (product.price * product.discountPercentage / 100)).toFixed(2)}$
-                    </div>
+                {isDiscounted && (
+                    <>
+                        <Col>
+                            {(product.price - (product.price * product.discountPercentage / 100)).toFixed(2)}$
+                        </Col>
 
-                    <Badge color="danger">
-                        -{product.discountPercentage}%
-                    </Badge>
-                </>
-            )}
-        </Row>
+                        <Col>
+                            <Badge color="danger">
+                                -{product.discountPercentage}%
+                            </Badge>
+                        </Col>
+                    </>
+                )}
+            </Row>
+        </Container>
     );
 };
 

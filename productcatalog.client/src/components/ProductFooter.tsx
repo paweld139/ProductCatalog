@@ -4,6 +4,7 @@ import {
 
 import {
     Button,
+    Col,
     Container,
     Row
 } from "reactstrap";
@@ -20,29 +21,27 @@ const ProductFooter = ({
     product
 }: Props) => {
     return (
-        <Container
-            className="p-0"
-        >
-            <Row
-                xs="auto"
-                className="justify-content-between align-items-center mb-2"
-            >
-                <span>{product.stock} in stock</span>
+        <Container className="p-0">
+            <Row className="mb-2">
+                <Col>{product.stock} in stock</Col>
 
-                <ProductPrice product={product} />
+                <Col xs="auto">
+                    <ProductPrice product={product} />
+                </Col>
             </Row>
 
-            <Row
-                xs="auto"
-                className="justify-content-between align-items-center"
-            >
-                <AppRating value={product.rating} />
+            <Row className="align-items-center">
+                <Col>
+                    <AppRating value={product.rating} />
+                </Col>
 
-                <Button
-                    onClick={() => alert(JSON.stringify(product))}
-                >
-                    Details
-                </Button>
+                <Col xs="auto">
+                    <Button
+                        onClick={() => alert(JSON.stringify(product))}
+                    >
+                        Details
+                    </Button>
+                </Col>
             </Row>
         </Container>
     );

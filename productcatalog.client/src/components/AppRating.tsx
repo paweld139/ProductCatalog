@@ -26,6 +26,8 @@ const AppRating = ({
                     />
                 );
             })}
+            {' '}
+            {value.toFixed(1)}
         </div>
     );
 };

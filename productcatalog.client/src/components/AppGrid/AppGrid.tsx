@@ -4,8 +4,7 @@ import {
     CardSubtitle,
     CardText,
     CardTitle,
-    CardFooter,
-    Button
+    CardFooter
 } from "reactstrap";
 
 import {
@@ -23,11 +22,11 @@ const AppGrid = ({
 }: Props) => {
     return (
         <div className={styles.container}>
-            {elements.map(element =>
+            {elements.map((element, i) =>
                 <Card
                     color="dark"
                     inverse
-                    key={element.title}
+                    key={i}
                 >
                     <img
                         alt={element.image.alt}
@@ -51,16 +50,8 @@ const AppGrid = ({
                         </CardText>
                     </CardBody>
 
-                    <CardFooter
-                        className="d-flex justify-content-between align-items-center"
-                    >
+                    <CardFooter>
                         {element.footer}
-
-                        <Button
-                            onClick={element.button.onClick}
-                        >
-                            {element.button.text}
-                        </Button>
                     </CardFooter>
                 </Card>
             )}

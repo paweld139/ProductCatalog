@@ -22,7 +22,7 @@ import {
 
 import AppGrid from './components/AppGrid/AppGrid';
 
-import AppRating from './components/AppRating';
+import ProductFooter from './components/ProductFooter';
 
 function App() {
     const [products, setProducts] = useState<Product[]>();
@@ -40,24 +40,19 @@ function App() {
 
     const elements = useMemo<GridElement[] | undefined>(() => products?.map(product => ({
         title: product.title,
-        subtitle: product.category,
+        subtitle: (
+            <>
+                {product.brand}
+                {product.brand && ' - '}
+                {product.category}
+            </>
+        ),
         text: product.description,
         image: {
             alt: product.title,
             src: product.thumbnail
         },
-        button: {
-            text: 'Details',
-            onClick: () => alert(JSON.stringify(product))
-        },
-        footer: (
-            <>
-                <AppRating value={product.rating} />
-
-                <span>
-                    <strong>Price:</strong>{' '}{product.price}
-                </span>
-            </>)
+        footer: <ProductFooter product={product} />
     })), [products]);
 
     const contents = elements === undefined

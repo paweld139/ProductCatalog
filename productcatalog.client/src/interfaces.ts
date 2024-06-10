@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface Tag {
     id: number;
     name: string;
@@ -62,16 +64,10 @@ export interface GridElementImage {
     src: string;
 }
 
-export interface GridElementButton {
-    text: string;
-    onClick: () => void;
-}
-
 export interface GridElement {
     image: GridElementImage,
-    title: string;
-    subtitle: string;
-    text: string;
-    button: GridElementButton;
+    title: React.ReactNode;
+    subtitle: React.ReactNode;
+    text: React.ReactNode;
     footer?: JSX.Element;
 }

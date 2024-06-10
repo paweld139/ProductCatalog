@@ -3,6 +3,7 @@ import {
 } from "../interfaces";
 
 import {
+    Badge,
     Button,
     Col,
     Container,
@@ -33,6 +34,22 @@ const ProductFooter = ({
                 </Col>
             </Row>
 
+            <Row
+                className="gap-1"
+                noGutters
+            >
+                {product.tagsCollection?.map((tag, i) =>
+                    <Col
+                        key={i}
+                        xs="auto"
+                    >
+                        <Badge color="secondary">
+                            {tag.name}
+                        </Badge>
+                    </Col>
+                )}
+            </Row>
+
             <Row className="align-items-center">
                 <Col>
                     <AppRating value={product.rating} />
@@ -41,6 +58,7 @@ const ProductFooter = ({
                 <Col xs="auto">
                     <Button
                         onClick={() => alert(JSON.stringify(product))}
+                        color="primary"
                     >
                         Details
                     </Button>

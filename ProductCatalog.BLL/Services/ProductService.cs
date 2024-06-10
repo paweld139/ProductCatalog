@@ -7,6 +7,8 @@ namespace ProductCatalog.BLL.Services
 {
     public class ProductService(ProductCatalogContext context) : IProductService
     {
-        public Task<List<Product>> Get() => context.Products.ToListAsync();
+        public Task<List<Product>> Get() => context.Products
+            .Include(p => p.Tags)
+            .ToListAsync();
     }
 }

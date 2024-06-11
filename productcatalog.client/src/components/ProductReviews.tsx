@@ -26,7 +26,9 @@ const ProductReviews = ({
 
                         <p>{review.comment}</p>
 
-                        <AppRating value={review.rating} />
+                        <p>
+                            <AppRating value={review.rating} />
+                        </p>
 
                         <p>{new Date(review.date).toLocaleString()}</p>
                     </li>

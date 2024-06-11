@@ -28,6 +28,7 @@ import {
 } from "reactstrap";
 
 import AppCarousel from "../components/AppCarousel";
+
 import AppRating from "../components/AppRating";
 
 const ProductDetails = () => {

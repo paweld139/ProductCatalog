@@ -10,5 +10,9 @@ namespace ProductCatalog.BLL.Services
         public Task<List<Product>> Get() => context.Products
             .Include(p => p.Tags)
             .ToListAsync();
+
+        public Task<Product?> Get(int id) => context.Products
+            .Include(p => p.Tags)
+            .SingleOrDefaultAsync(p => p.Id == id);
     }
 }

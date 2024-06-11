@@ -20,7 +20,7 @@ import {
 
 import AppGrid from '../components/AppGrid/AppGrid';
 
-import ProductFooter from '../components/ProductFooter';
+import ProductBasicInformation from '../components/ProductBasicInformation';
 
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>();
@@ -50,7 +50,7 @@ const ProductList = () => {
             alt: product.title,
             src: product.thumbnail
         },
-        footer: <ProductFooter product={product} />
+        footer: <ProductBasicInformation product={product} />
     })), [products]);
 
     const contents = elements === undefined

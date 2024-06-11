@@ -23,7 +23,7 @@ interface Props {
     withoutDetailsButton?: boolean
 }
 
-const ProductFooter = ({
+const ProductBasicInformation = ({
     product,
     withoutDetailsButton
 }: Props) => {
@@ -58,4 +58,4 @@ const ProductFooter = ({
     );
 };
 
-export default ProductFooter;
+export default ProductBasicInformation;

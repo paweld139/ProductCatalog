@@ -6,6 +6,14 @@ import {
     Product
 } from "../interfaces";
 
+import {
+    useNavigate
+} from "react-router-dom";
+
+import {
+    useCallback
+} from "react";
+
 interface Props {
     product: Product
 }
@@ -13,10 +21,13 @@ interface Props {
 const ProductDetailsButton = ({
     product
 }: Props) => {
+    const navigate = useNavigate();
+
+    const goToProductDetails = useCallback(() => navigate(`/productDetails/${product.id}`), [navigate, product.id]);
 
     return (
         <Button
-            onClick={() => alert(JSON.stringify(product))}
+            onClick={goToProductDetails}
             color="primary"
         >
             Details

@@ -13,7 +13,6 @@ import {
 import {
     Badge,
     Col,
-    Container,
     Row
 } from "reactstrap";
 
@@ -27,30 +26,25 @@ const ProductPrice = ({
     const isDiscounted = useMemo(() => product.discountPercentage > 0, [product.discountPercentage]);
 
     return (
-        <Container
-            className="p-0"
-            fluid
-        >
-            <Row className="g-1">
-                <Col className={clsx(isDiscounted && styles.discounted)}>
-                    {product.price}$
-                </Col>
+        <Row className="g-1">
+            <Col className={clsx(isDiscounted && styles.discounted)}>
+                {product.price}$
+            </Col>
 
-                {isDiscounted && (
-                    <>
-                        <Col>
-                            {(product.price - (product.price * product.discountPercentage / 100)).toFixed(2)}$
-                        </Col>
+            {isDiscounted && (
+                <>
+                    <Col>
+                        {(product.price - (product.price * product.discountPercentage / 100)).toFixed(2)}$
+                    </Col>
 
-                        <Col>
-                            <Badge color="danger">
-                                -{product.discountPercentage}%
-                            </Badge>
-                        </Col>
-                    </>
-                )}
-            </Row>
-        </Container>
+                    <Col>
+                        <Badge color="danger">
+                            -{product.discountPercentage}%
+                        </Badge>
+                    </Col>
+                </>
+            )}
+        </Row>
     );
 };
 

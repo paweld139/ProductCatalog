@@ -3,8 +3,6 @@ import {
 } from "../interfaces";
 
 import {
-    Badge,
-    Button,
     Col,
     Container,
     Row
@@ -13,6 +11,12 @@ import {
 import ProductPrice from "./ProductPrice/ProductPrice";
 
 import AppRating from "./AppRating";
+
+import ProductTags from "./ProductTags";
+
+import ProductStock from "./ProductStock";
+
+import ProductDetailsButton from "./ProductDetailsButton";
 
 interface Props {
     product: Product
@@ -27,25 +31,16 @@ const ProductFooter = ({
             fluid
         >
             <Row className="mb-2">
-                <Col>{product.stock} in stock</Col>
+                <Col>
+                    <ProductStock product={product} />
+                </Col>
 
                 <Col xs="auto">
                     <ProductPrice product={product} />
                 </Col>
             </Row>
 
-            <Row className="g-1">
-                {product.tagsCollection?.map((tag, i) =>
-                    <Col
-                        key={i}
-                        xs="auto"
-                    >
-                        <Badge color="secondary">
-                            {tag.name}
-                        </Badge>
-                    </Col>
-                )}
-            </Row>
+            <ProductTags product={product} />
 
             <Row className="align-items-center">
                 <Col>
@@ -53,12 +48,7 @@ const ProductFooter = ({
                 </Col>
 
                 <Col xs="auto">
-                    <Button
-                        onClick={() => alert(JSON.stringify(product))}
-                        color="primary"
-                    >
-                        Details
-                    </Button>
+                    <ProductDetailsButton product={product} />
                 </Col>
             </Row>
         </Container>

@@ -27,7 +27,7 @@ const AppRating = ({
                 );
             })}
             {' '}
-            {value.toFixed(1)}
+            {value}
         </div>
     );
 };

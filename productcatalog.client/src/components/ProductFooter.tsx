@@ -20,12 +20,12 @@ import ProductDetailsButton from "./ProductDetailsButton";
 
 interface Props {
     product: Product,
-    withDetailsButton?: boolean
+    withoutDetailsButton?: boolean
 }
 
 const ProductFooter = ({
     product,
-    withDetailsButton
+    withoutDetailsButton
 }: Props) => {
     return (
         <Container
@@ -49,7 +49,7 @@ const ProductFooter = ({
                     <AppRating value={product.rating} />
                 </Col>
 
-                {withDetailsButton !== true &&
+                {withoutDetailsButton !== true &&
                     <Col xs="auto">
                         <ProductDetailsButton product={product} />
                     </Col>}

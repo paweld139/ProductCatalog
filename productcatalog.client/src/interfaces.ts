@@ -50,7 +50,7 @@ export interface Product {
     dimensions: Dimensions;
     warrantyInformation: string;
     shippingInformation: string;
-    availabilistyStatus: string;
+    availabilityStatus: string;
     reviews: Review[];
     returnPolicy: string;
     minimumOrderQuantity: number;
@@ -70,4 +70,11 @@ export interface GridElement {
     subtitle: React.ReactNode;
     text: React.ReactNode;
     footer?: JSX.Element;
+}
+
+export interface CarouselElement {
+    src: string;
+    altText: string;
+    header?: string;
+    text?: string;
 }

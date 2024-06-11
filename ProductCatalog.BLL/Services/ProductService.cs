@@ -13,6 +13,10 @@ namespace ProductCatalog.BLL.Services
 
         public Task<Product?> Get(int id) => context.Products
             .Include(p => p.Tags)
+            .Include(p => p.Images)
+            .Include(p => p.Dimensions)
+            .Include(p => p.Meta)
+            .Include(p => p.Reviews)
             .SingleOrDefaultAsync(p => p.Id == id);
     }
 }

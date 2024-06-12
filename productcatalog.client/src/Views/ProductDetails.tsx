@@ -70,7 +70,7 @@ const ProductDetails = () => {
                     <ProductHeader product={product} />
                 </Col>
 
-                <Col xs="auto">
+                <Col sm="auto">
                     <ProductBasicInformation
                         product={product}
                         withoutDetailsButton

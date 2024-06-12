@@ -76,7 +76,7 @@ const AppCard = ({
 
             {footer &&
                 <CardFooter
-                className="border-light border-opacity-25"
+                    className="border-light border-opacity-25"
                 >
                     {footer}
                 </CardFooter>}

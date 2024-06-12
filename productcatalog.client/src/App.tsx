@@ -3,18 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AppRoutes from "./AppRoutes";
 
 import {
-    Link,
     Route,
     Routes
 } from 'react-router-dom';
 
 import {
-    Breadcrumb,
-    BreadcrumbItem,
     Container
 } from 'reactstrap';
 
 import useCurrentRoute from './hooks/useCurrentRoute';
+
+import AppBreadcrumb from './components/AppBreadcrumb';
 
 function App() {
     const flatRoutes = AppRoutes
@@ -31,18 +30,7 @@ function App() {
 
     return (
         <div className="p-1">
-            <Breadcrumb>
-                {flatRoutes
-                    .filter((route) => currentRoute && (route === currentRoute || route.subroutes?.includes(currentRoute)))
-                    .map((route) => (
-                        <BreadcrumbItem
-                            key={route.name}
-                            active={route === currentRoute}
-                        >
-                            {route !== currentRoute ? <Link to={route.path ?? "/"}>{route.name}</Link> : route.name}
-                        </BreadcrumbItem>
-                    ))}
-            </Breadcrumb>
+            <AppBreadcrumb routes={flatRoutes} />
 
             <Container
                 className={currentRoute?.className}

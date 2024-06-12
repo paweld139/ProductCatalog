@@ -22,18 +22,20 @@ const AppBreadcrumb = ({
 }: Props) => {
     const currentRoute = useCurrentRoute(routes);
 
-    <Breadcrumb>
-        {routes
-            .filter((route) => currentRoute && (route === currentRoute || route.subroutes?.includes(currentRoute)))
-            .map((route) => (
-                <BreadcrumbItem
-                    key={route.name}
-                    active={route === currentRoute}
-                >
-                    {route == currentRoute ? route.name : <Link to={route.path ?? "/"}>{route.name}</Link>}
-                </BreadcrumbItem>
-            ))}
-    </Breadcrumb>
+    return (
+        <Breadcrumb>
+            {routes
+                .filter((route) => currentRoute && (route === currentRoute || route.subroutes?.includes(currentRoute)))
+                .map((route) => (
+                    <BreadcrumbItem
+                        key={route.name}
+                        active={route === currentRoute}
+                    >
+                        {route == currentRoute ? route.name : <Link to={route.path ?? "/"}>{route.name}</Link>}
+                    </BreadcrumbItem>
+                ))}
+        </Breadcrumb>
+    );
 };
 
 export default AppBreadcrumb;

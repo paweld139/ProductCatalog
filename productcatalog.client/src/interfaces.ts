@@ -59,13 +59,13 @@ export interface Product {
     thumbnail: string;
 }
 
-export interface GridElementImage {
+export interface ImageProps {
     alt: string;
     src: string;
 }
 
 export interface GridElement {
-    image: GridElementImage,
+    image: ImageProps,
     title: React.ReactNode;
     subtitle: React.ReactNode;
     text: React.ReactNode;

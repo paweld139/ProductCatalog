@@ -14,7 +14,7 @@ const AppRating = ({
     value
 }: Props) => {
     return (
-        <div>
+        <span>
             {Array.from({ length: 5 }).map((_, index) => {
                 return (
                     <FontAwesomeIcon
@@ -28,7 +28,7 @@ const AppRating = ({
             })}
             {' '}
             {value}
-        </div>
+        </span>
     );
 };
 

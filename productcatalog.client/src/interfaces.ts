@@ -78,3 +78,12 @@ export interface CarouselElement {
     header?: string;
     text?: string;
 }
+
+export interface AppRoute {
+    index?: boolean;
+    path?: string;
+    element: JSX.Element;
+    name: string;
+    subroutes?: AppRoute[];
+    className?: string;
+}

@@ -2,16 +2,23 @@ import ProductDetails from "./Views/ProductDetails";
 
 import ProductList from "./Views/ProductList";
 
-const AppRoutes = [
+import {
+    AppRoute
+} from "./interfaces";
+
+const AppRoutes: AppRoute[] = [
     {
         index: true,
         element: <ProductList />,
-        name: 'Product list'
-    },
-    {
-        path: '/productDetails/:id',
-        element: <ProductDetails />,
-        name: 'Product details'
+        name: 'Product list',
+        subroutes: [
+            {
+                path: '/productDetails/:id',
+                element: <ProductDetails />,
+                name: 'Product details',
+                className: 'bg-dark text-white'
+            }
+        ]
     }
 ];
 

@@ -22,7 +22,6 @@ import ProductFooter from "../components/ProductBasicInformation";
 
 import {
     Col,
-    Container,
     Row
 } from "reactstrap";
 
@@ -58,7 +57,7 @@ const ProductDetails = () => {
     })), [product]);
 
     return product && (
-        <Container fluid className="bg-dark text-white">
+        <>
             <Row className="align-items-center">
                 <Col>
                     {images &&
@@ -88,7 +87,7 @@ const ProductDetails = () => {
                     <ProductReviews product={product} />
                 </Col>
             </Row>
-        </Container>
+        </>
     );
 };
 

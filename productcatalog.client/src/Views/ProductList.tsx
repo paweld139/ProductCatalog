@@ -14,10 +14,6 @@ import {
     getProducts
 } from '../requests';
 
-import {
-    Container
-} from 'reactstrap';
-
 import AppGrid from '../components/AppGrid/AppGrid';
 
 import ProductBasicInformation from '../components/ProductBasicInformation';
@@ -61,11 +57,11 @@ const ProductList = () => {
         />
 
     return (
-        <Container fluid>
+        <>
             <h1>Product catalog</h1>
 
             {contents}
-        </Container>
+        </>
     );
 };
 

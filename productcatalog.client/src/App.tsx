@@ -29,7 +29,7 @@ function App() {
     const currentRoute = useCurrentRoute(flatRoutes);
 
     return (
-        <div className="p-1">
+        <>
             <AppBreadcrumb routes={flatRoutes} />
 
             <Container
@@ -45,7 +45,7 @@ function App() {
                     ))}
                 </Routes>
             </Container>
-        </div>
+        </>
     );
 }
 

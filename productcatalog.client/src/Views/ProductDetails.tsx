@@ -18,7 +18,7 @@ import {
     getProduct
 } from "../requests";
 
-import ProductFooter from "../components/ProductBasicInformation";
+import ProductBasicInformation from "../components/ProductBasicInformation";
 
 import {
     Col,
@@ -59,22 +59,24 @@ const ProductDetails = () => {
     return product && (
         <>
             <Row className="align-items-center">
-                <Col>
+                <Col sm="6">
                     {images &&
                         <AppCarousel
                             items={images}
                         />}
                 </Col>
 
+                <Col>
+                    <ProductHeader product={product} />
+                </Col>
+
                 <Col xs="auto">
-                    <ProductFooter
+                    <ProductBasicInformation
                         product={product}
                         withoutDetailsButton
                     />
                 </Col>
             </Row>
-
-            <ProductHeader product={product} />
 
             <hr />
 

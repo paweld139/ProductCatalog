@@ -1,5 +1,10 @@
 import {
-    List
+    CardBody,
+    Card,
+    CardHeader,
+    CardFooter,
+    CardTitle,
+    CardSubtitle
 } from "reactstrap";
 
 import {
@@ -19,21 +24,26 @@ const ProductReviews = ({
         <>
             <h4>Reviews</h4>
 
-            <List>
-                {product.reviews.map(review => (
-                    <li key={review.id}>
-                        <h5>{review.reviewerName}</h5>
+            {product.reviews.map(review => (
+                <Card
+                    key={review.id}
+                    color="dark"
+                    inverse
+                    className="mb-2 border-light"
+                >
+                    <CardHeader className="border-light">{review.reviewerName}</CardHeader>
 
-                        <p>{review.comment}</p>
+                    <CardBody>
+                        <CardTitle>{review.comment}</CardTitle>
 
-                        <p>
+                        <CardSubtitle>
                             <AppRating value={review.rating} />
-                        </p>
+                        </CardSubtitle>
+                    </CardBody>
 
-                        <p>{new Date(review.date).toLocaleString()}</p>
-                    </li>
-                ))}
-            </List>
+                    <CardFooter className="border-light">{new Date(review.date).toLocaleString()}</CardFooter>
+                </Card>
+            ))}
         </>
     );
 };

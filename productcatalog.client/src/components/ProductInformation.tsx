@@ -1,4 +1,8 @@
 import {
+    Table
+} from "reactstrap";
+
+import {
     Product
 } from "../interfaces";
 
@@ -13,44 +17,96 @@ const ProductInformation = ({
         <>
             <h4>Information</h4>
 
-            <dl>
-                <dt>SKU</dt>
-                <dd>{product.sku}</dd>
+            <Table
+                striped
+                bordered
+                hover
+                responsive
+                dark
+            >
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
 
-                <dt>Weight</dt>
-                <dd>{product.weight}</dd>
+                <tbody>
+                    <tr>
+                        <td>SKU</td>
+                        <td>{product.sku}</td>
+                    </tr>
 
-                <dt>Dimensions</dt>
-                <dd>{product.dimensions.height} x {product.dimensions.width} x {product.dimensions.depth}</dd>
+                    <tr>
+                        <td>Weight</td>
+                        <td>{product.weight}</td>
+                    </tr>
 
-                <dt>Warranty Information</dt>
-                <dd>{product.warrantyInformation}</dd>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td>{product.dimensions.height} x {product.dimensions.width} x {product.dimensions.depth}</td>
+                    </tr>
 
-                <dt>Shipping Information</dt>
-                <dd>{product.shippingInformation}</dd>
+                    <tr>
+                        <td>Warranty Information</td>
+                        <td>{product.warrantyInformation}</td>
+                    </tr>
 
-                <dt>Availability Status</dt>
-                <dd>{product.availabilityStatus}</dd>
+                    <tr>
+                        <td>Shipping Information</td>
+                        <td>{product.shippingInformation}</td>
+                    </tr>
 
-                <dt>Return Policy</dt>
-                <dd>{product.returnPolicy}</dd>
+                    <tr>
+                        <td>Availability Status</td>
+                        <td>{product.availabilityStatus}</td>
+                    </tr>
 
-                <dt>Minimum Order Quantity</dt>
-                <dd>{product.minimumOrderQuantity}</dd>
+                    <tr>
+                        <td>Return Policy</td>
+                        <td>{product.returnPolicy}</td>
+                    </tr>
 
-                <dt>Meta</dt>
-                <dd>
-                    <dl>
-                        <dt>Barcode</dt>
-                        <dd>{product.meta.barcode}</dd>
+                    <tr>
+                        <td>Minimum Order Quantity</td>
+                        <td>{product.minimumOrderQuantity}</td>
+                    </tr>
 
-                        <dt>QR Code</dt>
-                        <dd>
-                            <img src={product.meta.qrCode} alt="QR Code" />
-                        </dd>
-                    </dl>
-                </dd>
-            </dl>
+                    <tr>
+                        <td>Meta</td>
+                        <td>
+                            <Table
+                                striped
+                                bordered
+                                hover
+                                responsive
+                                dark
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Barcode</td>
+                                        <td>{product.meta.barcode}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>QR Code</td>
+                                        <td>
+                                            <img src={product.meta.qrCode} alt="QR Code" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </td>
+                    </tr>
+                </tbody>
+            </Table>
         </>
     );
 };

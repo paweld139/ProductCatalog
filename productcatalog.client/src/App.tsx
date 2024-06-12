@@ -13,6 +13,8 @@ import {
 
 import AppBreadcrumb from './components/AppBreadcrumb';
 
+import './App.css';
+
 function App() {
     const flatRoutes = AppRoutes
         .reduce((acc, route) => {

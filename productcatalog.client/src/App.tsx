@@ -11,8 +11,6 @@ import {
     Container
 } from 'reactstrap';
 
-import useCurrentRoute from './hooks/useCurrentRoute';
-
 import AppBreadcrumb from './components/AppBreadcrumb';
 
 function App() {
@@ -26,26 +24,22 @@ function App() {
             return acc;
         }, [] as typeof AppRoutes);
 
-    const currentRoute = useCurrentRoute(flatRoutes);
-
     return (
-        <>
+        <Container
+            className="bg-dark text-white"
+            fluid
+        >
             <AppBreadcrumb routes={flatRoutes} />
 
-            <Container
-                className={currentRoute?.className}
-                fluid
-            >
-                <Routes>
-                    {flatRoutes.map((route) => (
-                        <Route
-                            key={route.name}
-                            {...route}
-                        />
-                    ))}
-                </Routes>
-            </Container>
-        </>
+            <Routes>
+                {flatRoutes.map((route) => (
+                    <Route
+                        key={route.name}
+                        {...route}
+                    />
+                ))}
+            </Routes>
+        </Container>
     );
 }
 

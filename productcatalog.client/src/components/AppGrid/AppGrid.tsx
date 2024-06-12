@@ -25,6 +25,7 @@ const AppGrid = ({
             {elements.map((element, i) =>
                 <Card
                     color="dark"
+                    className="border-light border-opacity-25"
                     inverse
                     key={i}
                 >

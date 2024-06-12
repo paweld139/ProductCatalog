@@ -15,8 +15,7 @@ const AppRoutes: AppRoute[] = [
             {
                 path: '/productDetails/:id',
                 element: <ProductDetails />,
-                name: 'Product details',
-                className: 'bg-dark text-white'
+                name: 'Product details'
             }
         ]
     }

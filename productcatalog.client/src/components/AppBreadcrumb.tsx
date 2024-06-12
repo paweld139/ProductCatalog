@@ -23,13 +23,14 @@ const AppBreadcrumb = ({
     const currentRoute = useCurrentRoute(routes);
 
     return (
-        <Breadcrumb className="px-1">
+        <Breadcrumb className="text-light">
             {routes
                 .filter((route) => currentRoute && (route === currentRoute || route.subroutes?.includes(currentRoute)))
                 .map((route) => (
                     <BreadcrumbItem
                         key={route.name}
                         active={route === currentRoute}
+                        className="text-light"
                     >
                         {route == currentRoute ? route.name : <Link to={route.path ?? "/"}>{route.name}</Link>}
                     </BreadcrumbItem>

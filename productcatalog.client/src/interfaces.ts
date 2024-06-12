@@ -85,5 +85,4 @@ export interface AppRoute {
     element: JSX.Element;
     name: string;
     subroutes?: AppRoute[];
-    className?: string;
 }

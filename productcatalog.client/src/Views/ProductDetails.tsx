@@ -59,7 +59,7 @@ const ProductDetails = () => {
     return product && (
         <>
             <Row className="align-items-center">
-                <Col sm="6">
+                <Col md="6">
                     {images &&
                         <AppCarousel
                             items={images}
@@ -70,7 +70,7 @@ const ProductDetails = () => {
                     <ProductHeader product={product} />
                 </Col>
 
-                <Col sm="auto">
+                <Col md="auto">
                     <ProductBasicInformation
                         product={product}
                         withoutDetailsButton

@@ -29,9 +29,9 @@ const ProductReviews = ({
                     key={review.id}
                     color="dark"
                     inverse
-                    className="mb-2 border-light"
+                    className="mb-2 border-light border-opacity-25"
                 >
-                    <CardHeader className="border-light">{review.reviewerName}</CardHeader>
+                    <CardHeader className="border-light border-opacity-25">{review.reviewerName}</CardHeader>
 
                     <CardBody>
                         <CardTitle>{review.comment}</CardTitle>
@@ -41,7 +41,7 @@ const ProductReviews = ({
                         </CardSubtitle>
                     </CardBody>
 
-                    <CardFooter className="border-light">{new Date(review.date).toLocaleString()}</CardFooter>
+                    <CardFooter className="border-light border-opacity-25">{new Date(review.date).toLocaleString()}</CardFooter>
                 </Card>
             ))}
         </>

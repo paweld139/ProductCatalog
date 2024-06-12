@@ -23,7 +23,7 @@ const AppBreadcrumb = ({
     const currentRoute = useCurrentRoute(routes);
 
     return (
-        <Breadcrumb className="text-light">
+        <Breadcrumb>
             {routes
                 .filter((route) => currentRoute && (route === currentRoute || route.subroutes?.includes(currentRoute)))
                 .map((route) => (

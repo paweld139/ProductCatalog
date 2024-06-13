@@ -64,9 +64,10 @@ const ProductList = () => {
 
             <AppAccordion
                 header="Filters"
-                body="Filters will go here"
                 className="mb-3"
-            />
+            >
+                Filters will go here
+            </AppAccordion>
 
             {contents}
         </>

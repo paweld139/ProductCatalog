@@ -12,13 +12,13 @@ import {
 
 interface Props {
     header: React.ReactNode;
-    body: React.ReactNode;
+    children: React.ReactNode;
     className?: string;
 }
 
 const AppAccordion = ({
     header,
-    body,
+    children,
     className
 }: Props) => {
     const [open, setOpen] = useState('1');
@@ -43,7 +43,7 @@ const AppAccordion = ({
                 </AccordionHeader>
 
                 <AccordionBody accordionId="1">
-                    {body}
+                    {children}
                 </AccordionBody>
             </AccordionItem>
         </Accordion>

@@ -18,6 +18,8 @@ import AppGrid from '../components/AppGrid/AppGrid';
 
 import ProductBasicInformation from '../components/ProductBasicInformation';
 
+import AppAccordion from '../components/AppAccordion';
+
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>();
 
@@ -59,6 +61,12 @@ const ProductList = () => {
     return (
         <>
             <h1>Product catalog</h1>
+
+            <AppAccordion
+                header="Filters"
+                body="Filters will go here"
+                className="mb-3"
+            />
 
             {contents}
         </>

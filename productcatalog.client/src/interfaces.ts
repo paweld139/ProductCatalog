@@ -1,4 +1,5 @@
 import React from "react";
+import { InputType } from "reactstrap/types/lib/Input";
 
 export interface Tag {
     id: number;
@@ -101,4 +102,10 @@ export interface ProductSearch {
     category: string;
     minPrice: number;
     maxPrice: number;
+}
+
+export interface FormInput<T> {
+    type: InputType;
+    label: string;
+    field: keyof T;
 }

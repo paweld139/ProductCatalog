@@ -6,6 +6,7 @@ import {
 } from 'react';
 
 import {
+    FormInput,
     GridElement,
     Product,
     ProductSearch
@@ -21,13 +22,7 @@ import ProductBasicInformation from '../components/ProductBasicInformation';
 
 import AppAccordion from '../components/AppAccordion';
 
-import {
-    Form,
-    FormGroup,
-    Input,
-    Label,
-    Row
-} from 'reactstrap';
+import AppForm from '../components/AppForm';
 
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>();
@@ -94,6 +89,24 @@ const ProductList = () => {
             elements={elements}
         />, [elements]);
 
+    const searchInputs = useMemo<FormInput<ProductSearch>[]>(() => [
+        {
+            label: 'Category',
+            field: 'category',
+            type: 'search'
+        },
+        {
+            label: 'Minimum price',
+            field: 'minPrice',
+            type: 'number'
+        },
+        {
+            label: 'Maximum price',
+            field: 'maxPrice',
+            type: 'number'
+        }
+    ], []);
+
     return (
         <>
             <h1>Product catalog</h1>
@@ -102,42 +115,12 @@ const ProductList = () => {
                 header="Filters"
                 className="mb-3"
             >
-                <Form>
-                    <Row xs="3">
-                        <FormGroup>
-                            <Label for="category">Category</Label>
-                            <Input
-                                name="category"
-                                id="category"
-                                type="search"
-                                onChange={e => setSearch({ ...search, category: e.target.value })}
-                                value={search.category}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <Label for="minPrice">Minimum price</Label>
-                            <Input
-                                name="minPrice"
-                                id="minPrice"
-                                type="number"
-                                onChange={e => setSearch({ ...search, minPrice: +e.target.value })}
-                                value={search.minPrice}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <Label for="maxPrice">Maximum price</Label>
-                            <Input
-                                name="maxPrice"
-                                id="maxPrice"
-                                type="number"
-                                onChange={e => setSearch({ ...search, maxPrice: +e.target.value })}
-                                value={search.maxPrice}
-                            />
-                        </FormGroup>
-                    </Row>
-                </Form>
+                <AppForm
+                    rowProps={{ xs: 3 }}
+                    inputs={searchInputs}
+                    data={search}
+                    setData={setSearch}
+                />
             </AppAccordion>
 
             {contents}

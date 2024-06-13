@@ -7,7 +7,8 @@ import {
 
 import {
     GridElement,
-    Product
+    Product,
+    ProductSearch
 } from '../interfaces';
 
 import {
@@ -20,8 +21,22 @@ import ProductBasicInformation from '../components/ProductBasicInformation';
 
 import AppAccordion from '../components/AppAccordion';
 
+import {
+    Form,
+    FormGroup,
+    Input,
+    Label,
+    Row
+} from 'reactstrap';
+
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>();
+
+    const [search, setSearch] = useState<ProductSearch>({
+        category: '',
+        minPrice: 0,
+        maxPrice: 0
+    });
 
     const populateProducts = useCallback(async () => {
         const data = await getProducts();
@@ -34,7 +49,29 @@ const ProductList = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const elements = useMemo<GridElement[] | undefined>(() => products?.map(product => ({
+    const filteredProducts = useMemo<Product[] | undefined>(() => {
+        if (products === undefined) {
+            return;
+        }
+
+        return products.filter(product => {
+            if (search.category !== '' && !product.category.toLowerCase().includes(search.category.toLowerCase())) {
+                return false;
+            }
+
+            if (search.minPrice !== 0 && product.price < search.minPrice) {
+                return false;
+            }
+
+            if (search.maxPrice !== 0 && product.price > search.maxPrice) {
+                return false;
+            }
+
+            return true;
+        });
+    }, [products, search]);
+
+    const elements = useMemo<GridElement[] | undefined>(() => filteredProducts?.map(product => ({
         title: product.title,
         subtitle: (
             <>
@@ -49,14 +86,13 @@ const ProductList = () => {
             src: product.thumbnail
         },
         footer: <ProductBasicInformation product={product} />
-    })), [products]);
+    })), [filteredProducts]);
 
-    const contents = elements === undefined
+    const contents = useMemo(() => elements === undefined
         ? <p><em>Loading...</em></p>
-        :
-        <AppGrid
+        : <AppGrid
             elements={elements}
-        />
+        />, [elements]);
 
     return (
         <>
@@ -66,7 +102,42 @@ const ProductList = () => {
                 header="Filters"
                 className="mb-3"
             >
-                Filters will go here
+                <Form>
+                    <Row xs="3">
+                        <FormGroup>
+                            <Label for="category">Category</Label>
+                            <Input
+                                name="category"
+                                id="category"
+                                type="search"
+                                onChange={e => setSearch({ ...search, category: e.target.value })}
+                                value={search.category}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Label for="minPrice">Minimum price</Label>
+                            <Input
+                                name="minPrice"
+                                id="minPrice"
+                                type="number"
+                                onChange={e => setSearch({ ...search, minPrice: +e.target.value })}
+                                value={search.minPrice}
+                            />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Label for="maxPrice">Maximum price</Label>
+                            <Input
+                                name="maxPrice"
+                                id="maxPrice"
+                                type="number"
+                                onChange={e => setSearch({ ...search, maxPrice: +e.target.value })}
+                                value={search.maxPrice}
+                            />
+                        </FormGroup>
+                    </Row>
+                </Form>
             </AppAccordion>
 
             {contents}

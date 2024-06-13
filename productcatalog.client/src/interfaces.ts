@@ -96,3 +96,9 @@ export interface Attribute {
     name: string;
     value: React.ReactNode;
 }
+
+export interface ProductSearch {
+    category: string;
+    minPrice: number;
+    maxPrice: number;
+}

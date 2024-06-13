@@ -32,7 +32,7 @@ namespace ProductCatalog.Server
 
             var app = builder.Build();
 
-            var scope = app.Services.CreateScope();
+            using var scope = app.Services.CreateScope();
 
             var seeder = scope.ServiceProvider.GetRequiredService<ProductCatalogSeeder>();
 

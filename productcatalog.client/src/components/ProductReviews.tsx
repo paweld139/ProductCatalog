@@ -19,6 +19,7 @@ const ProductReviews = ({
 
             {product.reviews.map(review => (
                 <AppCard
+                    key={review.id}
                     header={review.reviewerName}
                     title={review.comment}
                     subtitle={<AppRating value={review.rating} />}

@@ -13,8 +13,6 @@ import {
 
 import AppBreadcrumb from './components/AppBreadcrumb';
 
-import './App.css';
-
 function App() {
     const flatRoutes = AppRoutes
         .reduce((acc, route) => {
@@ -29,6 +27,7 @@ function App() {
     return (
         <Container
             className="bg-dark text-white"
+            data-bs-theme="dark"
             fluid
         >
             <AppBreadcrumb routes={flatRoutes} />

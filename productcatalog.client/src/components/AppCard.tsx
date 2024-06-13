@@ -20,7 +20,8 @@ interface Props {
     text?: React.ReactNode;
     footer?: React.ReactNode;
     image?: ImageProps;
-    defaultTitlesProps?: boolean
+    defaultTitlesProps?: boolean,
+    className?: string
 }
 
 const AppCard = ({
@@ -30,14 +31,11 @@ const AppCard = ({
     text,
     footer,
     image,
-    defaultTitlesProps
+    defaultTitlesProps,
+    className
 }: Props) => {
     return (
-        <Card
-            color="dark"
-            inverse
-            className="mb-2 border-light border-opacity-25"
-        >
+        <Card className={className}>
             {image &&
                 <img
                     alt={image.alt}
@@ -45,9 +43,7 @@ const AppCard = ({
                 />}
 
             {header &&
-                <CardHeader
-                    className="border-light border-opacity-25"
-                >
+                <CardHeader>
                     {header}
                 </CardHeader>}
 
@@ -75,9 +71,7 @@ const AppCard = ({
                 </CardBody>}
 
             {footer &&
-                <CardFooter
-                    className="border-light border-opacity-25"
-                >
+                <CardFooter>
                     {footer}
                 </CardFooter>}
         </Card>

@@ -21,7 +21,6 @@ const AppTable = <T,>({
             bordered
             hover
             responsive
-            dark
         >
             <thead>
                 <tr>

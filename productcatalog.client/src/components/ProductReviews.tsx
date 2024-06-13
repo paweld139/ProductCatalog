@@ -24,6 +24,7 @@ const ProductReviews = ({
                     title={review.comment}
                     subtitle={<AppRating value={review.rating} />}
                     footer={new Date(review.date).toLocaleString()}
+                    className="mb-3"
                     defaultTitlesProps
                 />
             ))}

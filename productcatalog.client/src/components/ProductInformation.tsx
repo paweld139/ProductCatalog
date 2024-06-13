@@ -1,10 +1,14 @@
 import {
-    Table
-} from "reactstrap";
+    Attribute,
+    Product,
+    TableColumn
+} from "../interfaces";
+
+import AppTable from "./AppTable";
 
 import {
-    Product
-} from "../interfaces";
+    useMemo
+} from "react";
 
 interface Props {
     product: Product
@@ -13,100 +17,78 @@ interface Props {
 const ProductInformation = ({
     product
 }: Props) => {
+    const columns = useMemo<TableColumn<Attribute>[]>(() => [
+        {
+            title: "Name",
+            field: "name"
+        },
+        {
+            title: "Value",
+            field: "value"
+        }
+    ], []);
+
+    const data = useMemo<Attribute[]>(() => [
+        {
+            name: "SKU",
+            value: product.sku
+        },
+        {
+            name: "Weight",
+            value: product.weight
+        },
+        {
+            name: "Dimensions",
+            value: `${product.dimensions.height} x ${product.dimensions.width} x ${product.dimensions.depth}`
+        },
+        {
+            name: "Warranty Information",
+            value: product.warrantyInformation
+        },
+        {
+            name: "Shipping Information",
+            value: product.shippingInformation
+        },
+        {
+            name: "Availability Status",
+            value: product.availabilityStatus
+        },
+        {
+            name: "Return Policy",
+            value: product.returnPolicy
+        },
+        {
+            name: "Minimum Order Quantity",
+            value: product.minimumOrderQuantity
+        },
+        {
+            name: "Meta",
+            value: (
+                <AppTable
+                    data={[
+                        {
+                            name: "Barcode",
+                            value: product.meta.barcode
+                        },
+                        {
+                            name: "QR Code",
+                            value: <img src={product.meta.qrCode} alt="QR Code" />
+                        }
+                    ]}
+                    columns={columns}
+                />
+            )
+        }
+    ], [columns, product.availabilityStatus, product.dimensions.depth, product.dimensions.height, product.dimensions.width, product.meta.barcode, product.meta.qrCode, product.minimumOrderQuantity, product.returnPolicy, product.shippingInformation, product.sku, product.warrantyInformation, product.weight]);
+
     return (
         <>
             <h4>Information</h4>
 
-            <Table
-                striped
-                bordered
-                hover
-                responsive
-                dark
-            >
-                <thead>
-                    <tr>
-                        <th>Attribute</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>SKU</td>
-                        <td>{product.sku}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Weight</td>
-                        <td>{product.weight}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Dimensions</td>
-                        <td>{product.dimensions.height} x {product.dimensions.width} x {product.dimensions.depth}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Warranty Information</td>
-                        <td>{product.warrantyInformation}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Shipping Information</td>
-                        <td>{product.shippingInformation}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Availability Status</td>
-                        <td>{product.availabilityStatus}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Return Policy</td>
-                        <td>{product.returnPolicy}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Minimum Order Quantity</td>
-                        <td>{product.minimumOrderQuantity}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Meta</td>
-                        <td>
-                            <Table
-                                striped
-                                bordered
-                                hover
-                                responsive
-                                dark
-                            >
-                                <thead>
-                                    <tr>
-                                        <th>Attribute</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>Barcode</td>
-                                        <td>{product.meta.barcode}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>QR Code</td>
-                                        <td>
-                                            <img src={product.meta.qrCode} alt="QR Code" />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
+            <AppTable
+                data={data}
+                columns={columns}
+            />
         </>
     );
 };

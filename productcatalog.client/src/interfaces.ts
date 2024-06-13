@@ -86,3 +86,13 @@ export interface AppRoute {
     name: string;
     subroutes?: AppRoute[];
 }
+
+export interface TableColumn<T> {
+    field: keyof T;
+    title: string;
+}
+
+export interface Attribute {
+    name: string;
+    value: React.ReactNode;
+}

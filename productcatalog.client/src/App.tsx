@@ -13,7 +13,9 @@ import {
 
 import AppBreadcrumb from './components/AppBreadcrumb';
 
-import './App.css';
+import {
+    useEffect
+} from 'react';
 
 function App() {
     const flatRoutes = AppRoutes
@@ -26,12 +28,12 @@ function App() {
             return acc;
         }, [] as typeof AppRoutes);
 
+    useEffect(() => {
+        document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+    }, []);
+
     return (
-        <Container
-            className="bg-dark text-white"
-            data-bs-theme="dark"
-            fluid
-        >
+        <Container fluid>
             <AppBreadcrumb routes={flatRoutes} />
 
             <Routes>

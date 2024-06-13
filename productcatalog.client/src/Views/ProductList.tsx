@@ -116,7 +116,7 @@ const ProductList = () => {
                 className="mb-3"
             >
                 <AppForm
-                    rowProps={{ xs: 1, sm: 2, md:3 }}
+                    rowProps={{ xs: 1, sm: 2, md: 3 }}
                     inputs={searchInputs}
                     data={search}
                     setData={setSearch}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -14,8 +15,8 @@ namespace ProductCatalog.DAL.Migrations
                 name: "Dimensions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Width = table.Column<float>(type: "real", nullable: false),
                     Height = table.Column<float>(type: "real", nullable: false),
                     Depth = table.Column<float>(type: "real", nullable: false)
@@ -29,12 +30,12 @@ namespace ProductCatalog.DAL.Migrations
                 name: "Metas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Barcode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QrCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Barcode = table.Column<string>(type: "text", nullable: false),
+                    QrCode = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,26 +46,26 @@ namespace ProductCatalog.DAL.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Category = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
                     DiscountPercentage = table.Column<float>(type: "real", nullable: false),
                     Rating = table.Column<float>(type: "real", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false),
-                    Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Sku = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Weight = table.Column<int>(type: "int", nullable: false),
-                    DimensionsId = table.Column<int>(type: "int", nullable: false),
-                    WarrantyInformation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ShippingInformation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AvailabilityStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReturnPolicy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MinimumOrderQuantity = table.Column<int>(type: "int", nullable: false),
-                    MetaId = table.Column<int>(type: "int", nullable: false),
-                    Thumbnail = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Stock = table.Column<int>(type: "integer", nullable: false),
+                    Brand = table.Column<string>(type: "text", nullable: true),
+                    Sku = table.Column<string>(type: "text", nullable: false),
+                    Weight = table.Column<int>(type: "integer", nullable: false),
+                    DimensionsId = table.Column<int>(type: "integer", nullable: false),
+                    WarrantyInformation = table.Column<string>(type: "text", nullable: false),
+                    ShippingInformation = table.Column<string>(type: "text", nullable: false),
+                    AvailabilityStatus = table.Column<string>(type: "text", nullable: false),
+                    ReturnPolicy = table.Column<string>(type: "text", nullable: false),
+                    MinimumOrderQuantity = table.Column<int>(type: "integer", nullable: false),
+                    MetaId = table.Column<int>(type: "integer", nullable: false),
+                    Thumbnail = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,10 +88,10 @@ namespace ProductCatalog.DAL.Migrations
                 name: "Images",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Url = table.Column<string>(type: "text", nullable: false),
+                    ProductId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -106,14 +107,14 @@ namespace ProductCatalog.DAL.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReviewerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReviewerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Rating = table.Column<int>(type: "integer", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ReviewerName = table.Column<string>(type: "text", nullable: false),
+                    ReviewerEmail = table.Column<string>(type: "text", nullable: false),
+                    ProductId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -129,10 +130,10 @@ namespace ProductCatalog.DAL.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    ProductId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {

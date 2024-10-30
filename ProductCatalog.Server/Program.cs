@@ -22,7 +22,7 @@ namespace ProductCatalog.Server
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddSqlServer<ProductCatalogContext>(connectionString);
+            services.AddNpgsql<ProductCatalogContext>(connectionString);
 
             services.AddScoped<ProductCatalogSeeder>();
 

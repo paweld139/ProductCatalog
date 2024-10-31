@@ -6,6 +6,10 @@ import {
     faStar
 } from "@fortawesome/free-solid-svg-icons";
 
+import {
+    IconProp
+} from '@fortawesome/fontawesome-svg-core';
+
 interface Props {
     value: number;
 }
@@ -18,7 +22,7 @@ const AppRating = ({
             {Array.from({ length: 5 }).map((_, index) => {
                 return (
                     <FontAwesomeIcon
-                        icon={faStar}
+                        icon={faStar as IconProp}
                         key={index}
                         style={{
                             color: index < value ? 'gold' : 'lightgrey'
